@@ -5,11 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class BDConnection {
-	
-	private Connection conexion;
-	
-	// Constructor de la clase
-	public DBConnection() {
+
+    private Connection conexion;
+
+    // Constructor de la clase
+    public BDConnection() {
         try {
             // cargar el driver JDBC
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -27,7 +27,8 @@ public class BDConnection {
             e.printStackTrace();
         }
     }
-	public Connection getConexion() {
+
+    public Connection getConexion() {
         return conexion;
     }
 }
