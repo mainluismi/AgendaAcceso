@@ -17,7 +17,7 @@ public class BDConnection {
             // preparar la URL de conexi�n
             String url = "jdbc:mysql://localhost:3306/bdTrabajadores";
 
-            // conectar con la BBDD --> ponemos la url, el usuario y la contrase�a
+            // conectar con la BBDD --> ponemos la url, el usuario y la contrasena
             conexion = DriverManager.getConnection(url, "root", "");
         } catch (ClassNotFoundException e) {
             System.out.println("Error en la carga del Driver");
