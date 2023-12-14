@@ -8,7 +8,7 @@ public class Trabajador {
     private String fecha;
     private String matricula;
 
-    public Personas(String dni, String nombre, String apellidos, double sueldos, String fecha, String matricula) {
+    public Trabajador(String dni, String nombre, String apellidos, double sueldos, String fecha, String matricula) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellidos = apellidos;
