@@ -49,7 +49,7 @@ public class Inicio extends javax.swing.JFrame {
 
                 btnMostrarAgenda.setBackground(new java.awt.Color(0, 255, 204));
                 btnMostrarAgenda.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
-                btnMostrarAgenda.setIcon(new javax.swing.ImageIcon("Vistas\\iconos\\mostrar.png")); // NOI18N
+                btnMostrarAgenda.setIcon(new javax.swing.ImageIcon("Vista\\iconos\\mostrar.png")); // NOI18N
                 btnMostrarAgenda.setText("Mostrar Trabajadores");
                 btnMostrarAgenda.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,7 +59,7 @@ public class Inicio extends javax.swing.JFrame {
 
                 btnSalir.setBackground(new java.awt.Color(0, 255, 204));
                 btnSalir.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
-                btnSalir.setIcon(new javax.swing.ImageIcon("Vistas\\iconos\\cerrar-sesion.png")); // NOI18N
+                btnSalir.setIcon(new javax.swing.ImageIcon("Vista\\iconos\\cerrar-sesion.png")); // NOI18N
                 btnSalir.setText("Salir");
                 btnSalir.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,7 +67,7 @@ public class Inicio extends javax.swing.JFrame {
                         }
                 });
 
-                jLabel4.setIcon(new javax.swing.ImageIcon("Vistas\\iconos\\cuaderno.png")); // NOI18N
+                jLabel4.setIcon(new javax.swing.ImageIcon("Vista\\iconos\\cuaderno.png")); // NOI18N
 
                 javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
                 jPanel1.setLayout(jPanel1Layout);

@@ -74,8 +74,7 @@ public class Datos extends javax.swing.JFrame {
 
         jButton5.setBackground(new java.awt.Color(0, 255, 204));
         jButton5.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\Administrador\\Documents\\NetBeansProjects\\BDTrabajadores\\src\\Vistas\\boton-eliminar.png")); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon("Vista\\iconos\\boton-eliminar.png")); // NOI18N
         jButton5.setText("Eliminar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,7 +85,7 @@ public class Datos extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(0, 255, 204));
         jButton1.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\Administrador\\Documents\\NetBeansProjects\\BDTrabajadores\\src\\Vistas\\anadir.png")); // NOI18N
+                "Vista\\iconos\\anadir.png")); // NOI18N
         jButton1.setText("Nuevo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,7 +96,7 @@ public class Datos extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(0, 255, 204));
         jButton3.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\Administrador\\Documents\\NetBeansProjects\\BDTrabajadores\\src\\Vistas\\lapiz.png")); // NOI18N
+                "Vista\\iconos\\lapiz.png")); // NOI18N
         jButton3.setText("Modificar ");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,7 +107,7 @@ public class Datos extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(0, 255, 204));
         jButton4.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\Administrador\\Documents\\NetBeansProjects\\BDTrabajadores\\src\\Vistas\\filtrar.png")); // NOI18N
+                "Vista\\iconos\\filtrar.png")); // NOI18N
         jButton4.setText("Filtrar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +146,7 @@ public class Datos extends javax.swing.JFrame {
                                 .addContainerGap(33, Short.MAX_VALUE)));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\Administrador\\Documents\\NetBeansProjects\\BDTrabajadores\\src\\Vistas\\cuaderno.png")); // NOI18N
+                "Vista\\iconos\\cuaderno.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

@@ -74,7 +74,7 @@ public class Nuevo extends javax.swing.JFrame {
 
                 btnNuevoCancelar.setBackground(new java.awt.Color(0, 255, 204));
                 btnNuevoCancelar.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
-                btnNuevoCancelar.setIcon(new javax.swing.ImageIcon("Vistas\\iconos\\cancelar.png")); // NOI18N
+                btnNuevoCancelar.setIcon(new javax.swing.ImageIcon("Vista\\iconos\\cancelar.png")); // NOI18N
                 btnNuevoCancelar.setText("Cancelar");
                 btnNuevoCancelar.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,7 +84,7 @@ public class Nuevo extends javax.swing.JFrame {
 
                 btnNuevoAceptar.setBackground(new java.awt.Color(0, 255, 204));
                 btnNuevoAceptar.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
-                btnNuevoAceptar.setIcon(new javax.swing.ImageIcon("Vistas\\iconos\\aceptar.png")); // NOI18N
+                btnNuevoAceptar.setIcon(new javax.swing.ImageIcon("Vista\\iconos\\aceptar.png")); // NOI18N
                 btnNuevoAceptar.setText("Aceptar");
                 btnNuevoAceptar.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,7 +92,7 @@ public class Nuevo extends javax.swing.JFrame {
                         }
                 });
 
-                jLabel8.setIcon(new javax.swing.ImageIcon("Vistas\\iconos\\cuaderno.png")); // NOI18N
+                jLabel8.setIcon(new javax.swing.ImageIcon("Vista\\iconos\\cuaderno.png")); // NOI18N
 
                 javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
                 jPanel1.setLayout(jPanel1Layout);

@@ -88,7 +88,7 @@ public class Filtrado extends javax.swing.JFrame {
         btnFiltrarAceptar.setBackground(new java.awt.Color(0, 255, 204));
         btnFiltrarAceptar.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         btnFiltrarAceptar.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\Administrador\\Documents\\NetBeansProjects\\BDTrabajadores\\src\\Vistas\\aceptar.png")); // NOI18N
+                "Vista\\iconos\\aceptar.png")); // NOI18N
         btnFiltrarAceptar.setText("Aceptar");
         btnFiltrarAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,7 +99,7 @@ public class Filtrado extends javax.swing.JFrame {
         btnFiltrarCancelar.setBackground(new java.awt.Color(0, 255, 204));
         btnFiltrarCancelar.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         btnFiltrarCancelar.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\Administrador\\Documents\\NetBeansProjects\\BDTrabajadores\\src\\Vistas\\cancelar.png")); // NOI18N
+                "Vista\\iconos\\cancelar.png")); // NOI18N
         btnFiltrarCancelar.setText("Cancelar");
         btnFiltrarCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,7 +115,7 @@ public class Filtrado extends javax.swing.JFrame {
         btnFiltrarVerTodos1.setBackground(new java.awt.Color(0, 255, 204));
         btnFiltrarVerTodos1.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         btnFiltrarVerTodos1.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\Administrador\\Documents\\NetBeansProjects\\BDTrabajadores\\src\\Vistas\\mostrar.png")); // NOI18N
+                "Vista\\iconos\\mostrar.png")); // NOI18N
         btnFiltrarVerTodos1.setText("Ver Todos");
         btnFiltrarVerTodos1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +124,7 @@ public class Filtrado extends javax.swing.JFrame {
         });
 
         jLabel8.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\Administrador\\Documents\\NetBeansProjects\\BDTrabajadores\\src\\Vistas\\cuaderno.png")); // NOI18N
+                "Vista\\iconos\\cuaderno.png")); // NOI18N
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Ordenacion"));
 

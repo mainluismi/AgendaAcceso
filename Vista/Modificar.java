@@ -75,7 +75,7 @@ public class Modificar extends javax.swing.JFrame {
 
                 btnModCancelar.setBackground(new java.awt.Color(0, 255, 204));
                 btnModCancelar.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
-                btnModCancelar.setIcon(new javax.swing.ImageIcon("Vistas\\iconos\\cerrar-sesion.png")); // NOI18N
+                btnModCancelar.setIcon(new javax.swing.ImageIcon("Vista\\iconos\\cerrar-sesion.png")); // NOI18N
                 btnModCancelar.setText("Cancelar");
                 btnModCancelar.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,7 +85,7 @@ public class Modificar extends javax.swing.JFrame {
 
                 btnModAceptar.setBackground(new java.awt.Color(0, 255, 204));
                 btnModAceptar.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
-                btnModAceptar.setIcon(new javax.swing.ImageIcon("Vistas\\iconos\\aceptar.png")); // NOI18N
+                btnModAceptar.setIcon(new javax.swing.ImageIcon("Vista\\iconos\\aceptar.png")); // NOI18N
                 btnModAceptar.setText("Aceptar");
                 btnModAceptar.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +94,7 @@ public class Modificar extends javax.swing.JFrame {
                 });
 
                 jLabel8.setIcon(new javax.swing.ImageIcon(
-                                "Vistas\\iconos\\cuaderno.png")); // NOI18N
+                                "Vista\\iconos\\cuaderno.png")); // NOI18N
 
                 javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
                 jPanel2.setLayout(jPanel2Layout);
