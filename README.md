@@ -15,6 +15,8 @@ create table Trabajadores(
     matricula varchar(9) not null
 );
 
+ALTER TABLE trabajadores ADD CONSTRAINT UNIQUE_ID UNIQUE (dni, matricula);
+
 
 INSERT INTO Trabajadores VALUES ('12345678A','Andres','Gutierrez','1500.00','1989-01-13','12312312P');
 INSERT INTO Trabajadores VALUES ('23456789B','Antonio','Fernandez','1400.00','1999-03-21','12312312Q');
