@@ -1,5 +1,7 @@
 package Vista;
 
+import Controlador.DAOTrabajador;
+
 public class Filtrado extends javax.swing.JFrame {
 
         public Filtrado() {
@@ -13,7 +15,7 @@ public class Filtrado extends javax.swing.JFrame {
                 jPanel1 = new javax.swing.JPanel();
                 jLabel1 = new javax.swing.JLabel();
                 jLabel3 = new javax.swing.JLabel();
-                txtFiltrarTrabajador = new javax.swing.JTextField();
+                txtFiltrarDni = new javax.swing.JTextField();
                 jLabel2 = new javax.swing.JLabel();
                 txtFiltrarNombre = new javax.swing.JTextField();
                 jLabel6 = new javax.swing.JLabel();
@@ -90,7 +92,9 @@ public class Filtrado extends javax.swing.JFrame {
                         }
                 });
 
-                comboSueldo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-" }));
+                comboSueldo.setModel(
+                                new javax.swing.DefaultComboBoxModel<>(
+                                                new String[] { "-", "=", ">", "<", ">=", "<=", "<>" }));
 
                 comboFecha.setModel(
                                 new javax.swing.DefaultComboBoxModel<>(
@@ -251,7 +255,7 @@ public class Filtrado extends javax.swing.JFrame {
                                                                                                                                                                 .createParallelGroup(
                                                                                                                                                                                 javax.swing.GroupLayout.Alignment.TRAILING,
                                                                                                                                                                                 false)
-                                                                                                                                                                .addComponent(txtFiltrarTrabajador,
+                                                                                                                                                                .addComponent(txtFiltrarDni,
                                                                                                                                                                                 javax.swing.GroupLayout.Alignment.LEADING)
                                                                                                                                                                 .addComponent(txtFiltrarNombre,
                                                                                                                                                                                 javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,7 +350,7 @@ public class Filtrado extends javax.swing.JFrame {
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                 27,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(txtFiltrarTrabajador,
+                                                                                .addComponent(txtFiltrarDni,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -471,22 +475,34 @@ public class Filtrado extends javax.swing.JFrame {
         }
 
         private void btnFiltrarAceptarActionPerformed(java.awt.event.ActionEvent evt) {
-                // TODO add your handling code here:
+                Datos pantalla = new Datos();
+                pantalla.setVisible(true);
+                pantalla.setLocationRelativeTo(null);
+                dispose();
         }
 
         private void btnFiltrarCancelarActionPerformed(java.awt.event.ActionEvent evt) {
                 Datos pantalla = new Datos();
                 pantalla.setVisible(true);
                 pantalla.setLocationRelativeTo(null);
-
+                dispose();
         }
 
         private void btnFiltrarVerTodos1ActionPerformed(java.awt.event.ActionEvent evt) {
-                // TODO add your handling code here:
+                Datos pantalla = new Datos();
+                pantalla.setVisible(true);
+                pantalla.setLocationRelativeTo(null);
+                dispose();
         }
 
         private void txtFiltrarMesActionPerformed(java.awt.event.ActionEvent evt) {
                 // TODO add your handling code here:
+        }
+
+        private void obtenerDniTrabajador() {
+                DAOTrabajador daoTrabajador = new DAOTrabajador();
+                String dni = txtFiltrarDni.getText();
+                daoTrabajador.obtenerTrabajadorPorDNI(dni);
         }
 
         private javax.swing.JButton btnFiltrarAceptar;
@@ -514,5 +530,5 @@ public class Filtrado extends javax.swing.JFrame {
         private javax.swing.JTextField txtFiltrarMes;
         private javax.swing.JTextField txtFiltrarNombre;
         private javax.swing.JTextField txtFiltrarSueldo;
-        private javax.swing.JTextField txtFiltrarTrabajador;
+        private javax.swing.JTextField txtFiltrarDni;
 }

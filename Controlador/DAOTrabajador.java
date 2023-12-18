@@ -198,4 +198,33 @@ public class DAOTrabajador {
         return trabajadores;
     }
 
+    // Modifica este método para que devuelva una lista de trabajadores
+    public List<Trabajador> obtenerTrabajadoresList() {
+        List<Trabajador> trabajadores = new ArrayList<>();
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = BDConnection.getConexion();
+            String query = "SELECT * FROM trabajadores";
+            statement = connection.prepareStatement(query);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Trabajador trabajador = new Trabajador();
+                trabajador.setDni(resultSet.getString("dni"));
+                trabajador.setNombre(resultSet.getString("nombre"));
+                trabajador.setApellidos(resultSet.getString("apellidos"));
+                trabajador.setSueldos(resultSet.getDouble("sueldo"));
+
+                trabajadores.add(trabajador);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return trabajadores;
+    }
 }

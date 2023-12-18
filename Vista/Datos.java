@@ -362,43 +362,30 @@ public class Datos extends javax.swing.JFrame {
 	private void actualizarTablaYSueldoMedio() {
 		// Obtén el número de trabajadores ingresado por el usuario
 		String texto = jTextField1.getText();
-		if (texto.isEmpty()) {
-			return;
-		}
-		int numTrabajadores = Integer.parseInt(texto);
-
 		DAOTrabajador daoTrabajador = new DAOTrabajador();
+
+		List<Trabajador> trabajadores;
 
 		if (texto.isEmpty()) {
 			// Si el JTextField está vacío, muestra todos los trabajadores
-			List<Trabajador> trabajadores = daoTrabajador.obtenerPrimerosNTrabajadores(numTrabajadores);
-
-			// Actualiza la tabla con todos los trabajadores
-			DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-			model.setRowCount(0); // Limpia la tabla antes de agregar nuevos datos
-
-			for (Trabajador trabajador : trabajadores) {
-				Object[] row = { trabajador.getDni(), trabajador.getNombre(), trabajador.getApellidos(),
-						trabajador.getSueldos() };
-				model.addRow(row);
-			}
-
-			// Deja el campo "Sueldo Medio" vacío
-			jTextField2.setText("");
+			trabajadores = daoTrabajador.obtenerTrabajadoresList();
 		} else {
+			int numTrabajadores = Integer.parseInt(texto);
 			// Obtén los primeros N registros de la tabla
-			List<Trabajador> trabajadores = daoTrabajador.obtenerPrimerosNTrabajadores(numTrabajadores);
+			trabajadores = daoTrabajador.obtenerPrimerosNTrabajadores(numTrabajadores);
+		}
 
-			// Actualiza la tabla con los trabajadores obtenidos
-			DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-			model.setRowCount(0); // Limpia la tabla antes de agregar nuevos datos
+		// Actualiza la tabla con los trabajadores obtenidos
+		DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+		model.setRowCount(0); // Limpia la tabla antes de agregar nuevos datos
 
-			for (Trabajador trabajador : trabajadores) {
-				Object[] row = { trabajador.getDni(), trabajador.getNombre(), trabajador.getApellidos(),
-						trabajador.getSueldos() };
-				model.addRow(row);
-			}
+		for (Trabajador trabajador : trabajadores) {
+			Object[] row = { trabajador.getDni(), trabajador.getNombre(), trabajador.getApellidos(),
+					trabajador.getSueldos() };
+			model.addRow(row);
+		}
 
+		if (!trabajadores.isEmpty()) {
 			// Calcula la media de sueldo de esos trabajadores
 			double sueldoMedio = calcularSueldoMedio(trabajadores);
 
@@ -408,8 +395,10 @@ public class Datos extends javax.swing.JFrame {
 
 			// Actualiza el campo "Sueldo Medio" con el resultado
 			jTextField2.setText(String.valueOf(sueldoMedioFormateado));
+		} else {
+			// Deja el campo "Sueldo Medio" vacío si no hay trabajadores
+			jTextField2.setText("");
 		}
-
 	}
 
 	private double calcularSueldoMedio(List<Trabajador> trabajadores) {

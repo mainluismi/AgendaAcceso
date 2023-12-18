@@ -338,12 +338,10 @@ public class Nuevo extends javax.swing.JFrame {
         }
 
         private void btnNuevoCancelarActionPerformed(java.awt.event.ActionEvent evt) {
+                dispose();
                 Datos pantalla = new Datos();
                 pantalla.setVisible(true);
                 pantalla.setLocationRelativeTo(null);
-                dispose();
-                Datos ventanaDatos = new Datos();
-                ventanaDatos.setVisible(true);
         }
 
         private void btnNuevoAceptarActionPerformed(java.awt.event.ActionEvent evt) {
