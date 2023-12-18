@@ -341,6 +341,9 @@ public class Nuevo extends javax.swing.JFrame {
                 Datos pantalla = new Datos();
                 pantalla.setVisible(true);
                 pantalla.setLocationRelativeTo(null);
+                dispose();
+                Datos ventanaDatos = new Datos();
+                ventanaDatos.setVisible(true);
         }
 
         private void btnNuevoAceptarActionPerformed(java.awt.event.ActionEvent evt) {
@@ -362,6 +365,9 @@ public class Nuevo extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Error al insertar el trabajador", "Error",
                                         JOptionPane.ERROR_MESSAGE);
                 }
+                dispose();
+                Datos ventanaDatos = new Datos();
+                ventanaDatos.setVisible(true);
         }
 
         private javax.swing.JButton btnNuevoAceptar;

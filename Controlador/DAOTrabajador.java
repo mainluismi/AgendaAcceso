@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -147,4 +149,53 @@ public class DAOTrabajador {
             return false;
         }
     }
+
+    public List<Trabajador> obtenerPrimerosNTrabajadores(int n) {
+        List<Trabajador> trabajadores = new ArrayList<>();
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = BDConnection.getConexion();
+
+            String query = "SELECT * FROM trabajadores LIMIT ?";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, n);
+
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Trabajador trabajador = new Trabajador();
+                trabajador.setDni(resultSet.getString("dni"));
+                trabajador.setNombre(resultSet.getString("nombre"));
+                trabajador.setApellidos(resultSet.getString("apellidos"));
+                trabajador.setSueldos(resultSet.getDouble("sueldo"));
+
+                trabajadores.add(trabajador);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return trabajadores;
+    }
+
 }

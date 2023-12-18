@@ -191,7 +191,7 @@ public class Inicio extends javax.swing.JFrame {
                 Datos cargarDatos = new Datos();
                 cargarDatos.setVisible(true);
                 cargarDatos.setLocationRelativeTo(null);
-
+                dispose();
         }
 
         private javax.swing.JButton btnMostrarAgenda;

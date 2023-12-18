@@ -3,6 +3,7 @@ package Vista;
 import java.text.SimpleDateFormat;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 import Controlador.DAOTrabajador;
 import Entidad.Trabajador;
@@ -362,6 +363,7 @@ public class Modificar extends javax.swing.JFrame {
         }
 
         private void btnModCancelarActionPerformed(java.awt.event.ActionEvent evt) {
+                dispose();
                 Datos pantalla = new Datos();
                 pantalla.setVisible(true);
                 pantalla.setLocationRelativeTo(null);
@@ -382,33 +384,37 @@ public class Modificar extends javax.swing.JFrame {
                 daoTrabajador.actualizarTrabajador(dni, nombre, apellidos, sueldo, fecha, matricula);
 
                 // Cierra la ventana después de realizar la actualización
-                this.dispose();
+                dispose();
+                Datos pantalla = new Datos();
+                pantalla.setVisible(true);
         }
 
         public void cargarDatosTrabajador(String dni) {
                 DAOTrabajador daoTrabajador = new DAOTrabajador();
                 Trabajador trabajador = daoTrabajador.obtenerTrabajadorPorDNI(dni);
-
-                // Verificar si se obtuvo un trabajador con el DNI proporcionado
-                if (trabajador != null) {
-                        // Rellenar los campos con los datos del trabajador
-                        txtModDni.setText(trabajador.getDni());
-                        txtModNombre.setText(trabajador.getNombre());
-                        txtModApellidos.setText(trabajador.getApellidos());
-                        txtModSueldo.setText(String.valueOf(trabajador.getSueldos()));
-
-                        // Concatenar los campos de fecha para formar una cadena de fecha completa
-                        String fechaCompleta = txtModAnio.getText() + "-" + txtModMes.getText() + "-"
-                                        + txtModDia.getText();
-                        txtModFecha.setText(fechaCompleta);
-
-                        txtModMatricula.setText(trabajador.getMatricula());
-                } else {
-                        // Manejar la situación en la que no se encuentra el trabajador
-                        System.out.println("Trabajador no encontrado con DNI: " + dni);
+            
+                txtModDni.setText(trabajador.getDni());
+                txtModDni.setEditable(false);
+                txtModNombre.setText(trabajador.getNombre());
+                txtModApellidos.setText(trabajador.getApellidos());
+                txtModSueldo.setText(String.valueOf(trabajador.getSueldos()));
+            
+                // Construye la fecha utilizando los campos de día, mes y año
+                String fecha = trabajador.getFecha();
+                String[] partesFecha = fecha.split("-");
+                txtModDia.setText(partesFecha[2]);
+                txtModMes.setText(partesFecha[1]);
+                txtModAnio.setText(partesFecha[0]);
+            
+                txtModMatricula.setText(trabajador.getMatricula());
+            
+                // Asegúrate de que txtModFecha esté inicializado y no editable
+                if (txtModFecha != null) {
+                    txtModFecha.setEditable(false);
                 }
         }
-
+            
+            
         private javax.swing.JButton btnModAceptar;
         private javax.swing.JButton btnModCancelar;
         private javax.swing.JLabel jLabel1;
