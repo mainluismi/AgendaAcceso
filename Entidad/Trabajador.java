@@ -8,6 +8,10 @@ public class Trabajador {
     private String fecha;
     private String matricula;
 
+    public Trabajador() {
+
+    }
+
     public Trabajador(String dni, String nombre, String apellidos, double sueldos, String fecha, String matricula) {
         this.dni = dni;
         this.nombre = nombre;

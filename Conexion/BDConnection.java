@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class BDConnection {
 
-    private Connection conexion;
+    private static Connection conexion;
 
     // Constructor de la clase
     public BDConnection() {
@@ -28,7 +28,7 @@ public class BDConnection {
         }
     }
 
-    public Connection getConexion() {
+    public static Connection getConexion() {
         return conexion;
     }
 }

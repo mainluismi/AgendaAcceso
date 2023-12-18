@@ -468,61 +468,27 @@ public class Filtrado extends javax.swing.JFrame {
                                                                 .addContainerGap()));
 
                 pack();
-        }// </editor-fold>//GEN-END:initComponents
+        }
 
-        private void btnFiltrarAceptarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnFiltrarAceptarActionPerformed
+        private void btnFiltrarAceptarActionPerformed(java.awt.event.ActionEvent evt) {
                 // TODO add your handling code here:
-        }// GEN-LAST:event_btnFiltrarAceptarActionPerformed
+        }
 
-        private void btnFiltrarCancelarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnFiltrarCancelarActionPerformed
+        private void btnFiltrarCancelarActionPerformed(java.awt.event.ActionEvent evt) {
                 Datos pantalla = new Datos();
                 pantalla.setVisible(true);
                 pantalla.setLocationRelativeTo(null);
 
-        }// GEN-LAST:event_btnFiltrarCancelarActionPerformed
-
-        private void btnFiltrarVerTodos1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnFiltrarVerTodos1ActionPerformed
-                // TODO add your handling code here:
-        }// GEN-LAST:event_btnFiltrarVerTodos1ActionPerformed
-
-        private void txtFiltrarMesActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtFiltrarMesActionPerformed
-                // TODO add your handling code here:
-        }// GEN-LAST:event_txtFiltrarMesActionPerformed
-
-        public static void main(String args[]) {
-
-                try {
-                        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-                                        .getInstalledLookAndFeels()) {
-                                if ("Nimbus".equals(info.getName())) {
-                                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                                        break;
-                                }
-                        }
-                } catch (ClassNotFoundException ex) {
-                        java.util.logging.Logger.getLogger(Filtrado.class.getName()).log(java.util.logging.Level.SEVERE,
-                                        null, ex);
-                } catch (InstantiationException ex) {
-                        java.util.logging.Logger.getLogger(Filtrado.class.getName()).log(java.util.logging.Level.SEVERE,
-                                        null, ex);
-                } catch (IllegalAccessException ex) {
-                        java.util.logging.Logger.getLogger(Filtrado.class.getName()).log(java.util.logging.Level.SEVERE,
-                                        null, ex);
-                } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                        java.util.logging.Logger.getLogger(Filtrado.class.getName()).log(java.util.logging.Level.SEVERE,
-                                        null, ex);
-                }
-                // </editor-fold>
-
-                /* Create and display the form */
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                        public void run() {
-                                new Filtrado().setVisible(true);
-                        }
-                });
         }
 
-        // Variables declaration - do not modify//GEN-BEGIN:variables
+        private void btnFiltrarVerTodos1ActionPerformed(java.awt.event.ActionEvent evt) {
+                // TODO add your handling code here:
+        }
+
+        private void txtFiltrarMesActionPerformed(java.awt.event.ActionEvent evt) {
+                // TODO add your handling code here:
+        }
+
         private javax.swing.JButton btnFiltrarAceptar;
         private javax.swing.JButton btnFiltrarCancelar;
         private javax.swing.JButton btnFiltrarVerTodos1;
@@ -549,5 +515,4 @@ public class Filtrado extends javax.swing.JFrame {
         private javax.swing.JTextField txtFiltrarNombre;
         private javax.swing.JTextField txtFiltrarSueldo;
         private javax.swing.JTextField txtFiltrarTrabajador;
-        // End of variables declaration//GEN-END:variables
 }

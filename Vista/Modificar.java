@@ -1,5 +1,12 @@
 package Vista;
 
+import java.text.SimpleDateFormat;
+
+import javax.swing.JOptionPane;
+
+import Controlador.DAOTrabajador;
+import Entidad.Trabajador;
+
 public class Modificar extends javax.swing.JFrame {
 
         public Modificar() {
@@ -352,52 +359,56 @@ public class Modificar extends javax.swing.JFrame {
                                                                 .addContainerGap()));
 
                 pack();
-        }// </editor-fold>//GEN-END:initComponents
+        }
 
-        private void btnModCancelarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnModCancelarActionPerformed
+        private void btnModCancelarActionPerformed(java.awt.event.ActionEvent evt) {
                 Datos pantalla = new Datos();
                 pantalla.setVisible(true);
                 pantalla.setLocationRelativeTo(null);
-        }// GEN-LAST:event_btnModCancelarActionPerformed
-
-        private void btnModAceptarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnModAceptarActionPerformed
-                // TODO add your handling code here:
-        }// GEN-LAST:event_btnModAceptarActionPerformed
-
-        public static void main(String args[]) {
-
-                try {
-                        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-                                        .getInstalledLookAndFeels()) {
-                                if ("Nimbus".equals(info.getName())) {
-                                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                                        break;
-                                }
-                        }
-                } catch (ClassNotFoundException ex) {
-                        java.util.logging.Logger.getLogger(Modificar.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
-                } catch (InstantiationException ex) {
-                        java.util.logging.Logger.getLogger(Modificar.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
-                } catch (IllegalAccessException ex) {
-                        java.util.logging.Logger.getLogger(Modificar.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
-                } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                        java.util.logging.Logger.getLogger(Modificar.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
-                }
-                // </editor-fold>
-
-                /* Create and display the form */
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                        public void run() {
-                                new Modificar().setVisible(true);
-                        }
-                });
         }
 
-        // Variables declaration - do not modify//GEN-BEGIN:variables
+        private void btnModAceptarActionPerformed(java.awt.event.ActionEvent evt) {
+                // Este método se encargará de actualizar los datos del trabajador en la base de
+                // datos
+                String dni = txtModDni.getText();
+                String nombre = txtModNombre.getText();
+                String apellidos = txtModApellidos.getText();
+                double sueldo = Double.parseDouble(txtModSueldo.getText());
+                String fecha = txtModAnio.getText() + "-" + txtModMes.getText() + "-" + txtModDia.getText();
+                String matricula = txtModMatricula.getText();
+
+                // Llama a tu método en DAOTrabajador para actualizar los datos
+                DAOTrabajador daoTrabajador = new DAOTrabajador();
+                daoTrabajador.actualizarTrabajador(dni, nombre, apellidos, sueldo, fecha, matricula);
+
+                // Cierra la ventana después de realizar la actualización
+                this.dispose();
+        }
+
+        public void cargarDatosTrabajador(String dni) {
+                DAOTrabajador daoTrabajador = new DAOTrabajador();
+                Trabajador trabajador = daoTrabajador.obtenerTrabajadorPorDNI(dni);
+
+                // Verificar si se obtuvo un trabajador con el DNI proporcionado
+                if (trabajador != null) {
+                        // Rellenar los campos con los datos del trabajador
+                        txtModDni.setText(trabajador.getDni());
+                        txtModNombre.setText(trabajador.getNombre());
+                        txtModApellidos.setText(trabajador.getApellidos());
+                        txtModSueldo.setText(String.valueOf(trabajador.getSueldos()));
+
+                        // Concatenar los campos de fecha para formar una cadena de fecha completa
+                        String fechaCompleta = txtModAnio.getText() + "-" + txtModMes.getText() + "-"
+                                        + txtModDia.getText();
+                        txtModFecha.setText(fechaCompleta);
+
+                        txtModMatricula.setText(trabajador.getMatricula());
+                } else {
+                        // Manejar la situación en la que no se encuentra el trabajador
+                        System.out.println("Trabajador no encontrado con DNI: " + dni);
+                }
+        }
+
         private javax.swing.JButton btnModAceptar;
         private javax.swing.JButton btnModCancelar;
         private javax.swing.JLabel jLabel1;
@@ -416,7 +427,7 @@ public class Modificar extends javax.swing.JFrame {
         private javax.swing.JTextField txtModDni;
         private javax.swing.JTextField txtModMatricula;
         private javax.swing.JTextField txtModMes;
+        private javax.swing.JTextField txtModFecha;
         private javax.swing.JTextField txtModNombre;
         private javax.swing.JTextField txtModSueldo;
-        // End of variables declaration//GEN-END:variables
 }

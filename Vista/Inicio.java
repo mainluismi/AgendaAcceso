@@ -181,51 +181,19 @@ public class Inicio extends javax.swing.JFrame {
                                                                                 Short.MAX_VALUE)));
 
                 pack();
-        }// </editor-fold>//GEN-END:initComponents
+        }
 
-        private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSalirActionPerformed
+        private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {
                 System.exit(0);
-        }// GEN-LAST:event_btnSalirActionPerformed
+        }
 
-        private void btnMostrarAgendaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMostrarAgendaActionPerformed
+        private void btnMostrarAgendaActionPerformed(java.awt.event.ActionEvent evt) {
                 Datos cargarDatos = new Datos();
                 cargarDatos.setVisible(true);
                 cargarDatos.setLocationRelativeTo(null);
 
-        }// GEN-LAST:event_btnMostrarAgendaActionPerformed
-
-        public static void main(String args[]) {
-
-                try {
-                        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-                                        .getInstalledLookAndFeels()) {
-                                if ("Nimbus".equals(info.getName())) {
-                                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                                        break;
-                                }
-                        }
-                } catch (ClassNotFoundException ex) {
-                        java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE,
-                                        null, ex);
-                } catch (InstantiationException ex) {
-                        java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE,
-                                        null, ex);
-                } catch (IllegalAccessException ex) {
-                        java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE,
-                                        null, ex);
-                } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                        java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE,
-                                        null, ex);
-                }
-
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                        public void run() {
-                                new Inicio().setVisible(true);
-                        }
-                });
         }
 
-        // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton btnMostrarAgenda;
         private javax.swing.JButton btnSalir;
         private javax.swing.JLabel jLabel1;
@@ -233,5 +201,4 @@ public class Inicio extends javax.swing.JFrame {
         private javax.swing.JLabel jLabel3;
         private javax.swing.JLabel jLabel4;
         private javax.swing.JPanel jPanel1;
-        // End of variables declaration//GEN-END:variables
 }

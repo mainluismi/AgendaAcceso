@@ -9,5 +9,4 @@ public class Main {
         pantalla.setVisible(true);
         pantalla.setLocationRelativeTo(null);
     }
-
 }

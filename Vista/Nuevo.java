@@ -1,5 +1,9 @@
 package Vista;
 
+import javax.swing.JOptionPane;
+
+import Controlador.DAOTrabajador;
+
 public class Nuevo extends javax.swing.JFrame {
 
         public Nuevo() {
@@ -331,52 +335,35 @@ public class Nuevo extends javax.swing.JFrame {
                                                                                 Short.MAX_VALUE)));
 
                 pack();
-        }// </editor-fold>//GEN-END:initComponents
+        }
 
-        private void btnNuevoCancelarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnNuevoCancelarActionPerformed
+        private void btnNuevoCancelarActionPerformed(java.awt.event.ActionEvent evt) {
                 Datos pantalla = new Datos();
                 pantalla.setVisible(true);
                 pantalla.setLocationRelativeTo(null);
-        }// GEN-LAST:event_btnNuevoCancelarActionPerformed
-
-        private void btnNuevoAceptarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnNuevoAceptarActionPerformed
-                // TODO add your handling code here:
-        }// GEN-LAST:event_btnNuevoAceptarActionPerformed
-
-        public static void main(String args[]) {
-
-                try {
-                        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-                                        .getInstalledLookAndFeels()) {
-                                if ("Nimbus".equals(info.getName())) {
-                                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                                        break;
-                                }
-                        }
-                } catch (ClassNotFoundException ex) {
-                        java.util.logging.Logger.getLogger(Nuevo.class.getName()).log(java.util.logging.Level.SEVERE,
-                                        null, ex);
-                } catch (InstantiationException ex) {
-                        java.util.logging.Logger.getLogger(Nuevo.class.getName()).log(java.util.logging.Level.SEVERE,
-                                        null, ex);
-                } catch (IllegalAccessException ex) {
-                        java.util.logging.Logger.getLogger(Nuevo.class.getName()).log(java.util.logging.Level.SEVERE,
-                                        null, ex);
-                } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                        java.util.logging.Logger.getLogger(Nuevo.class.getName()).log(java.util.logging.Level.SEVERE,
-                                        null, ex);
-                }
-                // </editor-fold>
-
-                /* Create and display the form */
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                        public void run() {
-                                new Nuevo().setVisible(true);
-                        }
-                });
         }
 
-        // Variables declaration - do not modify//GEN-BEGIN:variables
+        private void btnNuevoAceptarActionPerformed(java.awt.event.ActionEvent evt) {
+                String dni = txtNuevoDni.getText();
+                String nombre = txtNuevoNombre.getText();
+                String apellidos = txtNuevoApellidos.getText();
+                double sueldo = Double.parseDouble(txtNuevoSueldo.getText());
+                String fecha = txtNuevoDia.getText() + "/" + txtNuevoMes.getText() + "/" + txtNuevoAnio.getText();
+                String matricula = txtNuevoMatricula.getText();
+
+                DAOTrabajador daoTrabajador = new DAOTrabajador();
+
+                boolean insertado = daoTrabajador.insertarTrabajador(dni, nombre, apellidos, sueldo, fecha, matricula);
+
+                if (insertado) {
+                        JOptionPane.showMessageDialog(this, "Trabajador insertado correctamente", "Éxito",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                        JOptionPane.showMessageDialog(this, "Error al insertar el trabajador", "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                }
+        }
+
         private javax.swing.JButton btnNuevoAceptar;
         private javax.swing.JButton btnNuevoCancelar;
         private javax.swing.JLabel jLabel1;
@@ -396,5 +383,4 @@ public class Nuevo extends javax.swing.JFrame {
         private javax.swing.JTextField txtNuevoMes;
         private javax.swing.JTextField txtNuevoNombre;
         private javax.swing.JTextField txtNuevoSueldo;
-        // End of variables declaration//GEN-END:variables
 }

@@ -1,5 +1,10 @@
 package Vista;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import Controlador.DAOTrabajador;
+
 public class Datos extends javax.swing.JFrame {
 
         public Datos() {
@@ -34,16 +39,12 @@ public class Datos extends javax.swing.JFrame {
                 jLabel1.setForeground(new java.awt.Color(255, 255, 255));
                 jLabel1.setText("Datos Trabajadores");
 
-                jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                                new Object[][] {
-                                                { null, null, null, null, null, null },
-                                                { null, null, null, null, null, null },
-                                                { null, null, null, null, null, null },
-                                                { null, null, null, null, null, null }
-                                },
-                                new String[] {
-                                                "Dni", "Nombre", "Apellidos", "Sueldo", "Fecha", "Matricula"
-                                }));
+                DAOTrabajador daoTrabajador = new DAOTrabajador();
+
+                DefaultTableModel modelo = daoTrabajador.obtenerTrabajadores();
+
+                jTable1.setModel(modelo);
+
                 jScrollPane1.setViewportView(jTable1);
 
                 jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
@@ -270,28 +271,53 @@ public class Datos extends javax.swing.JFrame {
                                                                                 Short.MAX_VALUE)));
 
                 pack();
-        }// </editor-fold>//GEN-END:initComponents
+        }
 
-        private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton5ActionPerformed
-                // TODO add your handling code here:
-        }// GEN-LAST:event_jButton5ActionPerformed
+        private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
+                // Obtener el DNI de la fila seleccionada
+                String dni = obtenerDNIFilaSeleccionada();
 
-        private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+                if (dni != null) {
+                        DAOTrabajador daoTrabajador = new DAOTrabajador();
+
+                        boolean eliminado = daoTrabajador.eliminarTrabajador(dni);
+
+                        if (eliminado) {
+                                jTable1.setModel(daoTrabajador.obtenerTrabajadores());
+                        } else {
+                                JOptionPane.showMessageDialog(this, "Error al eliminar el trabajador", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
+                } else {
+                        JOptionPane.showMessageDialog(this, "Seleccione una fila para eliminar", "Advertencia",
+                                        JOptionPane.WARNING_MESSAGE);
+                }
+        }
+
+        private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
                 Nuevo pantalla = new Nuevo();
                 pantalla.setVisible(true);
                 pantalla.setLocationRelativeTo(null);
-        }// GEN-LAST:event_jButton1ActionPerformed
+        }
 
-        private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
+        private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
                 Modificar pantalla = new Modificar();
                 pantalla.setVisible(true);
                 pantalla.setLocationRelativeTo(null);
-        }// GEN-LAST:event_jButton3ActionPerformed
+        }
 
-        private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
+        private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
                 Filtrado pantalla = new Filtrado();
                 pantalla.setVisible(true);
                 pantalla.setLocationRelativeTo(null);
+        }
+
+        public String obtenerDNIFilaSeleccionada() {
+                int filaSeleccionada = jTable1.getSelectedRow();
+                if (filaSeleccionada != -1) {
+                        return jTable1.getValueAt(filaSeleccionada, 0).toString();
+                }
+                return null;
         }
 
         private javax.swing.JButton jButton1;
@@ -308,5 +334,4 @@ public class Datos extends javax.swing.JFrame {
         private javax.swing.JTable jTable1;
         private javax.swing.JTextField jTextField1;
         private javax.swing.JTextField jTextField2;
-        // End of variables declaration//GEN-END:variables
 }
