@@ -342,6 +342,8 @@ public class Nuevo extends javax.swing.JFrame {
                 Datos pantalla = new Datos();
                 pantalla.setVisible(true);
                 pantalla.setLocationRelativeTo(null);
+                pantalla.actualizarTablaYSueldoMedio();
+
         }
 
         private void btnNuevoAceptarActionPerformed(java.awt.event.ActionEvent evt) {
@@ -366,6 +368,8 @@ public class Nuevo extends javax.swing.JFrame {
                 dispose();
                 Datos ventanaDatos = new Datos();
                 ventanaDatos.setVisible(true);
+                ventanaDatos.actualizarTablaYSueldoMedio();
+
         }
 
         private javax.swing.JButton btnNuevoAceptar;

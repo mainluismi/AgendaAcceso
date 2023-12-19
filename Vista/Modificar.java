@@ -367,6 +367,8 @@ public class Modificar extends javax.swing.JFrame {
                 Datos pantalla = new Datos();
                 pantalla.setVisible(true);
                 pantalla.setLocationRelativeTo(null);
+                pantalla.actualizarTablaYSueldoMedio();
+
         }
 
         private void btnModAceptarActionPerformed(java.awt.event.ActionEvent evt) {
@@ -387,34 +389,35 @@ public class Modificar extends javax.swing.JFrame {
                 dispose();
                 Datos pantalla = new Datos();
                 pantalla.setVisible(true);
+                pantalla.actualizarTablaYSueldoMedio();
+
         }
 
         public void cargarDatosTrabajador(String dni) {
                 DAOTrabajador daoTrabajador = new DAOTrabajador();
                 Trabajador trabajador = daoTrabajador.obtenerTrabajadorPorDNI(dni);
-            
+
                 txtModDni.setText(trabajador.getDni());
                 txtModDni.setEditable(false);
                 txtModNombre.setText(trabajador.getNombre());
                 txtModApellidos.setText(trabajador.getApellidos());
                 txtModSueldo.setText(String.valueOf(trabajador.getSueldos()));
-            
+
                 // Construye la fecha utilizando los campos de día, mes y año
                 String fecha = trabajador.getFecha();
                 String[] partesFecha = fecha.split("-");
                 txtModDia.setText(partesFecha[2]);
                 txtModMes.setText(partesFecha[1]);
                 txtModAnio.setText(partesFecha[0]);
-            
+
                 txtModMatricula.setText(trabajador.getMatricula());
-            
+
                 // Asegúrate de que txtModFecha esté inicializado y no editable
                 if (txtModFecha != null) {
-                    txtModFecha.setEditable(false);
+                        txtModFecha.setEditable(false);
                 }
         }
-            
-            
+
         private javax.swing.JButton btnModAceptar;
         private javax.swing.JButton btnModCancelar;
         private javax.swing.JLabel jLabel1;

@@ -1,5 +1,8 @@
 package Vista;
 
+import javax.swing.ButtonGroup;
+import javax.swing.JRadioButton;
+
 import Controlador.DAOTrabajador;
 
 public class Filtrado extends javax.swing.JFrame {
@@ -475,9 +478,89 @@ public class Filtrado extends javax.swing.JFrame {
         }
 
         private void btnFiltrarAceptarActionPerformed(java.awt.event.ActionEvent evt) {
+                String dni;
+                String nombre;
+                String apellidos;
+                String sueldo;
+                String dia;
+                String mes;
+                String anio;
+                String matricula;
+                String fecha;
+                String sueldoOperador;
+                String fechaOperador;
+                String orderBy = "";
+                String sortOrder = "";
+                String sql = "SELECT * FROM trabajadores WHERE";
+
+                ButtonGroup buttonGroup = new ButtonGroup();
+                buttonGroup.add(jRadioButton1);
+                buttonGroup.add(jRadioButton2);
+
+                dni = txtFiltrarDni.getText();
+                nombre = txtFiltrarNombre.getText();
+                apellidos = txtFiltrarApellidos.getText();
+                sueldo = txtFiltrarSueldo.getText();
+                dia = txtFiltrarDia.getText();
+                mes = txtFiltrarMes.getText();
+                anio = txtFiltrarAnio.getText();
+                fecha = anio + "-" + mes + "-" + dia;
+                matricula = txtFiltrarMatricula.getText();
+
+                // Obtener operadores seleccionados de los JComboBox
+                sueldoOperador = (String) comboSueldo.getSelectedItem();
+                fechaOperador = (String) comboFecha.getSelectedItem();
+
+                if (!dni.isEmpty()) {
+                        sql += " dni='" + dni + "' AND";
+                }
+
+                if (!nombre.isEmpty()) {
+                        sql += " nombre='" + nombre + "' AND";
+                }
+
+                if (!apellidos.isEmpty()) {
+                        sql += " apellidos='" + apellidos + "' AND";
+                }
+
+                if (!sueldo.isEmpty()) {
+                        sql += " sueldo" + sueldoOperador + "'" + sueldo + "' AND";
+                }
+
+                if (!dia.isEmpty() && !mes.isEmpty() && !anio.isEmpty()) {
+                        fecha = anio + "-" + mes + "-" + dia;
+                        sql += " fecha" + fechaOperador + "'" + fecha + "' AND";
+                }
+
+                if (!matricula.isEmpty()) {
+                        sql += " matricula='" + matricula + "' AND";
+                }
+
+                // Eliminar el último "AND" si hay al menos una condición
+                if (sql.endsWith(" AND")) {
+                        sql = sql.substring(0, sql.length() - 4);
+                }
+
+                // Lógica para la ordenación
+                if (jRadioButton1.isSelected() || jRadioButton2.isSelected()) {
+                        // Selecciona el orden y la columna para ordenar
+                        orderBy = (String) jComboBox1.getSelectedItem();
+                        sortOrder = (jRadioButton1.isSelected()) ? "ASC" : "DESC";
+
+                        // Agregar la ordenación a la consulta SQL
+                        sql += " ORDER BY " + orderBy + " " + sortOrder;
+                }
+
+                // Agregar el punto y coma al final de la consulta
+                sql += ";";
+
+                System.out.println(sql);
+
                 Datos pantalla = new Datos();
                 pantalla.setVisible(true);
                 pantalla.setLocationRelativeTo(null);
+                pantalla.actualizarTablaConConsulta(sql);
+                pantalla.actualizarTablaYSueldoMedio();
                 dispose();
         }
 
@@ -485,24 +568,23 @@ public class Filtrado extends javax.swing.JFrame {
                 Datos pantalla = new Datos();
                 pantalla.setVisible(true);
                 pantalla.setLocationRelativeTo(null);
+                pantalla.actualizarTablaYSueldoMedio();
+
                 dispose();
         }
 
         private void btnFiltrarVerTodos1ActionPerformed(java.awt.event.ActionEvent evt) {
+
                 Datos pantalla = new Datos();
                 pantalla.setVisible(true);
                 pantalla.setLocationRelativeTo(null);
+                pantalla.actualizarTablaYSueldoMedio();
+
                 dispose();
         }
 
         private void txtFiltrarMesActionPerformed(java.awt.event.ActionEvent evt) {
                 // TODO add your handling code here:
-        }
-
-        private void obtenerDniTrabajador() {
-                DAOTrabajador daoTrabajador = new DAOTrabajador();
-                String dni = txtFiltrarDni.getText();
-                daoTrabajador.obtenerTrabajadorPorDNI(dni);
         }
 
         private javax.swing.JButton btnFiltrarAceptar;

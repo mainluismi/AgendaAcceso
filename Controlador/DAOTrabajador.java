@@ -18,7 +18,17 @@ import javax.swing.table.DefaultTableModel;
 
 public class DAOTrabajador {
 
-    private final Connection conexion;
+    private String url; // URL for connecting to the database
+    private String user; // Database username
+    private String password; // Database password
+
+    private Connection conexion;
+
+    public DAOTrabajador(String url, String user, String password) {
+        this.url = url;
+        this.user = user;
+        this.password = password;
+    }
 
     public DAOTrabajador() {
         BDConnection bdConnection = new BDConnection();
@@ -172,6 +182,8 @@ public class DAOTrabajador {
                 trabajador.setNombre(resultSet.getString("nombre"));
                 trabajador.setApellidos(resultSet.getString("apellidos"));
                 trabajador.setSueldos(resultSet.getDouble("sueldo"));
+                trabajador.setFecha(resultSet.getString("fecha"));
+                trabajador.setMatricula(resultSet.getString("matricula"));
 
                 trabajadores.add(trabajador);
             }
@@ -218,6 +230,8 @@ public class DAOTrabajador {
                 trabajador.setNombre(resultSet.getString("nombre"));
                 trabajador.setApellidos(resultSet.getString("apellidos"));
                 trabajador.setSueldos(resultSet.getDouble("sueldo"));
+                trabajador.setFecha(resultSet.getString("fecha"));
+                trabajador.setMatricula(resultSet.getString("matricula"));
 
                 trabajadores.add(trabajador);
             }
@@ -227,4 +241,60 @@ public class DAOTrabajador {
 
         return trabajadores;
     }
+
+    public List<Trabajador> filtrarTrabajadoresConConsulta(String consulta) {
+        List<Trabajador> trabajadores = new ArrayList<>();
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = BDConnection.getConexion(); // Reemplaza esto según tu lógica de conexión
+
+            statement = connection.prepareStatement(consulta);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Trabajador trabajador = new Trabajador();
+                trabajador.setDni(resultSet.getString("dni"));
+                trabajador.setNombre(resultSet.getString("nombre"));
+                trabajador.setApellidos(resultSet.getString("apellidos"));
+                trabajador.setSueldos(resultSet.getDouble("sueldo"));
+                trabajador.setFecha(resultSet.getString("fecha"));
+                trabajador.setMatricula(resultSet.getString("matricula"));
+
+                trabajadores.add(trabajador);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return trabajadores;
+    }
+
 }

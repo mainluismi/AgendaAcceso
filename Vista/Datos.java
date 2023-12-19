@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.event.DocumentEvent;
@@ -17,6 +18,7 @@ public class Datos extends javax.swing.JFrame {
 
 	public Datos() {
 		initComponents();
+		actualizarTablaYSueldoMedio();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -279,7 +281,7 @@ public class Datos extends javax.swing.JFrame {
 										Short.MAX_VALUE)));
 
 		pack();
-		agregarDocumentListener();
+		// agregarDocumentListener();
 	}
 
 	private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -301,6 +303,7 @@ public class Datos extends javax.swing.JFrame {
 			JOptionPane.showMessageDialog(this, "Seleccione una fila para eliminar", "Advertencia",
 					JOptionPane.WARNING_MESSAGE);
 		}
+		actualizarTablaYSueldoMedio();
 	}
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -326,6 +329,7 @@ public class Datos extends javax.swing.JFrame {
 		Filtrado pantalla = new Filtrado();
 		pantalla.setVisible(true);
 		pantalla.setLocationRelativeTo(null);
+
 		dispose();
 	}
 
@@ -338,54 +342,46 @@ public class Datos extends javax.swing.JFrame {
 	}
 
 	// Coger el numero de trabajadores del jtextdield
-	private void agregarDocumentListener() {
-		Document document = jTextField1.getDocument();
-		document.addDocumentListener(new DocumentListener() {
-			@Override
-			public void insertUpdate(DocumentEvent e) {
-				System.out.println("Texto insertado: " + jTextField1.getText());
-				actualizarTablaYSueldoMedio();
-			}
+	/*
+	 * private void agregarDocumentListener() {
+	 * Document document = jTextField1.getDocument();
+	 * document.addDocumentListener(new DocumentListener() {
+	 * 
+	 * @Override
+	 * public void insertUpdate(DocumentEvent e) {
+	 * actualizarTablaYSueldoMedio();
+	 * }
+	 * 
+	 * @Override
+	 * public void removeUpdate(DocumentEvent e) {
+	 * actualizarTablaYSueldoMedio();
+	 * }
+	 * 
+	 * @Override
+	 * public void changedUpdate(DocumentEvent e) {
+	 * actualizarTablaYSueldoMedio();
+	 * }
+	 * });
+	 * }
+	 */
 
-			@Override
-			public void removeUpdate(DocumentEvent e) {
-				actualizarTablaYSueldoMedio();
-			}
-
-			@Override
-			public void changedUpdate(DocumentEvent e) {
-				actualizarTablaYSueldoMedio();
-			}
-		});
-	}
-
-	private void actualizarTablaYSueldoMedio() {
-		// Obtén el número de trabajadores ingresado por el usuario
-		String texto = jTextField1.getText();
+	public void actualizarTablaYSueldoMedio() {
+		String texto;
 		DAOTrabajador daoTrabajador = new DAOTrabajador();
+		DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
 		List<Trabajador> trabajadores;
+		trabajadores = daoTrabajador.obtenerTrabajadoresList();
 
-		if (texto.isEmpty()) {
-			// Si el JTextField está vacío, muestra todos los trabajadores
-			trabajadores = daoTrabajador.obtenerTrabajadoresList();
-		} else {
-			int numTrabajadores = Integer.parseInt(texto);
-			// Obtén los primeros N registros de la tabla
-			trabajadores = daoTrabajador.obtenerPrimerosNTrabajadores(numTrabajadores);
-		}
+		int numeroFilas = model.getRowCount();
 
-		// Actualiza la tabla con los trabajadores obtenidos
-		DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-		model.setRowCount(0); // Limpia la tabla antes de agregar nuevos datos
+		if (numeroFilas >= 0) {
+			// Obtener el número de trabajadores
+			int numeroTrabajadores = numeroFilas;
 
-		for (Trabajador trabajador : trabajadores) {
-			Object[] row = { trabajador.getDni(), trabajador.getNombre(), trabajador.getApellidos(),
-					trabajador.getSueldos() };
-			model.addRow(row);
-		}
+			// Convertir el número a String
+			texto = String.valueOf(numeroTrabajadores);
 
-		if (!trabajadores.isEmpty()) {
 			// Calcula la media de sueldo de esos trabajadores
 			double sueldoMedio = calcularSueldoMedio(trabajadores);
 
@@ -393,19 +389,25 @@ public class Datos extends javax.swing.JFrame {
 			DecimalFormat df = new DecimalFormat("#.##");
 			String sueldoMedioFormateado = df.format(sueldoMedio);
 
-			// Actualiza el campo "Sueldo Medio" con el resultado
-			jTextField2.setText(String.valueOf(sueldoMedioFormateado));
+			// Actualizar el JTextField1 en el hilo de despacho de eventos de Swing
+			SwingUtilities.invokeLater(() -> {
+				jTextField1.setText(texto);
+				jTextField2.setText(sueldoMedioFormateado);
+			});
 		} else {
-			// Deja el campo "Sueldo Medio" vacío si no hay trabajadores
-			jTextField2.setText("");
+			// En caso de que no haya trabajadores, puedes establecer algún valor
+			// predeterminado o dejarlo vacío
+			SwingUtilities.invokeLater(() -> {
+				jTextField1.setText("0");
+			});
 		}
 	}
 
-	private double calcularSueldoMedio(List<Trabajador> trabajadores) {
+	private double calcularSueldoMedio(List<Trabajador> trabajadoresFiltrados) {
 		double sueldoTotal = 0;
-		int totalTrabajadores = trabajadores.size();
+		int totalTrabajadores = trabajadoresFiltrados.size();
 
-		for (Trabajador trabajador : trabajadores) {
+		for (Trabajador trabajador : trabajadoresFiltrados) {
 			sueldoTotal += trabajador.getSueldos();
 		}
 
@@ -416,6 +418,23 @@ public class Datos extends javax.swing.JFrame {
 			// Manejar el caso donde no hay trabajadores (evitar división por cero, etc.)
 			System.out.println("No hay trabajadores para calcular el sueldo medio");
 			return 0; // o podrías devolver un valor especial para indicar que no hay trabajadores
+		}
+	}
+
+	public void actualizarTablaConConsulta(String consulta) {
+		DAOTrabajador daoTrabajador = new DAOTrabajador();
+
+		// Obtén los trabajadores según la consulta SQL
+		List<Trabajador> trabajadoresFiltrados = daoTrabajador.filtrarTrabajadoresConConsulta(consulta);
+
+		// Actualiza la tabla con los resultados
+		DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+		model.setRowCount(0);
+
+		for (Trabajador trabajador : trabajadoresFiltrados) {
+			Object[] row = { trabajador.getDni(), trabajador.getNombre(), trabajador.getApellidos(),
+					trabajador.getSueldos(), trabajador.getFecha(), trabajador.getMatricula() };
+			model.addRow(row);
 		}
 	}
 
