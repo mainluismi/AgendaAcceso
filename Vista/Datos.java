@@ -1,6 +1,7 @@
 package Vista;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -281,7 +282,6 @@ public class Datos extends javax.swing.JFrame {
 										Short.MAX_VALUE)));
 
 		pack();
-		// agregarDocumentListener();
 	}
 
 	private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -341,30 +341,6 @@ public class Datos extends javax.swing.JFrame {
 		return null;
 	}
 
-	// Coger el numero de trabajadores del jtextdield
-	/*
-	 * private void agregarDocumentListener() {
-	 * Document document = jTextField1.getDocument();
-	 * document.addDocumentListener(new DocumentListener() {
-	 * 
-	 * @Override
-	 * public void insertUpdate(DocumentEvent e) {
-	 * actualizarTablaYSueldoMedio();
-	 * }
-	 * 
-	 * @Override
-	 * public void removeUpdate(DocumentEvent e) {
-	 * actualizarTablaYSueldoMedio();
-	 * }
-	 * 
-	 * @Override
-	 * public void changedUpdate(DocumentEvent e) {
-	 * actualizarTablaYSueldoMedio();
-	 * }
-	 * });
-	 * }
-	 */
-
 	public void actualizarTablaYSueldoMedio() {
 		String texto;
 		DAOTrabajador daoTrabajador = new DAOTrabajador();
@@ -405,14 +381,17 @@ public class Datos extends javax.swing.JFrame {
 
 	private double calcularSueldoMedio(List<Trabajador> trabajadoresFiltrados) {
 		double sueldoTotal = 0;
-		int totalTrabajadores = trabajadoresFiltrados.size();
+		DAOTrabajador daoTrabajador = new DAOTrabajador();
+		DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+		trabajadoresFiltrados = daoTrabajador.obtenerTrabajadoresFiltrados(model);
+		System.out.println("el numero de trabajadores filtrados es: " + trabajadoresFiltrados.size());
 
 		for (Trabajador trabajador : trabajadoresFiltrados) {
 			sueldoTotal += trabajador.getSueldos();
 		}
 
-		if (totalTrabajadores > 0) {
-			double sueldoMedio = sueldoTotal / totalTrabajadores;
+		if (!trabajadoresFiltrados.isEmpty()) {
+			double sueldoMedio = sueldoTotal / trabajadoresFiltrados.size();
 			return sueldoMedio;
 		} else {
 			// Manejar el caso donde no hay trabajadores (evitar división por cero, etc.)

@@ -516,7 +516,14 @@ public class Filtrado extends javax.swing.JFrame {
                 }
 
                 if (!nombre.isEmpty()) {
-                        sql += " nombre='" + nombre + "' AND";
+                        if (nombre.length() == 1) {
+                                // Si hay un solo carácter en el nombre, cambia la condición para buscar nombres
+                                // que contengan esa letra
+                                sql += " nombre LIKE '%" + nombre + "%' AND";
+                        } else {
+                                // Si hay más de un carácter, usa la condición original
+                                sql += " nombre='" + nombre + "' AND";
+                        }
                 }
 
                 if (!apellidos.isEmpty()) {

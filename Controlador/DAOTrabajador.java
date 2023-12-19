@@ -297,4 +297,25 @@ public class DAOTrabajador {
         return trabajadores;
     }
 
+    public List<Trabajador> obtenerTrabajadoresFiltrados(DefaultTableModel model) {
+        List<Trabajador> trabajadoresFiltrados = new ArrayList<>();
+
+        // Recorrer las filas de la tabla y obtener los trabajadores filtrados
+        for (int i = 0; i < model.getRowCount(); i++) {
+            Trabajador trabajador = new Trabajador();
+
+            // Asumiendo que el constructor de Trabajador acepta los valores necesarios
+            trabajador.setDni((String) model.getValueAt(i, 0));
+            trabajador.setNombre((String) model.getValueAt(i, 1));
+            trabajador.setApellidos((String) model.getValueAt(i, 2));
+            trabajador.setSueldos((double) model.getValueAt(i, 3));
+            trabajador.setFecha((String) model.getValueAt(i, 4));
+            trabajador.setMatricula((String) model.getValueAt(i, 5));
+
+            trabajadoresFiltrados.add(trabajador);
+        }
+
+        return trabajadoresFiltrados;
+    }
+
 }
