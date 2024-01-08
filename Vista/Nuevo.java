@@ -336,7 +336,7 @@ public class Nuevo extends javax.swing.JFrame {
 
                 pack();
         }
-
+        //boton cancelar para volver a la vista anterior
         private void btnNuevoCancelarActionPerformed(java.awt.event.ActionEvent evt) {
                 dispose();
                 Datos pantalla = new Datos();
@@ -345,7 +345,7 @@ public class Nuevo extends javax.swing.JFrame {
                 pantalla.actualizarTablaYSueldoMedio();
 
         }
-
+        //boton aceptar para añadir un nuevo trabajador 
         private void btnNuevoAceptarActionPerformed(java.awt.event.ActionEvent evt) {
                 String dni = txtNuevoDni.getText();
                 String nombre = txtNuevoNombre.getText();
