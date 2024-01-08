@@ -1,6 +1,7 @@
 package Entidad;
 
 public class Trabajador {
+    //declaramos la variables
     private String dni;
     private String nombre;
     private String apellidos;
@@ -8,6 +9,7 @@ public class Trabajador {
     private String fecha;
     private String matricula;
 
+    //Creo los constructores
     public Trabajador() {
 
     }
@@ -20,6 +22,7 @@ public class Trabajador {
         this.fecha = fecha;
         this.matricula = matricula;
     }
+    //creo los getters y setters
 
     public String getDni() {
         return dni;
