@@ -361,7 +361,7 @@ public class Modificar extends javax.swing.JFrame {
 
                 pack();
         }
-
+        // se crea el boton cancelar para volver a la anterior vista
         private void btnModCancelarActionPerformed(java.awt.event.ActionEvent evt) {
                 dispose();
                 Datos pantalla = new Datos();
@@ -370,7 +370,7 @@ public class Modificar extends javax.swing.JFrame {
                 pantalla.actualizarTablaYSueldoMedio();
 
         }
-
+        //boton aceptar para modificar los datos del trabajador
         private void btnModAceptarActionPerformed(java.awt.event.ActionEvent evt) {
                 // Este método se encargará de actualizar los datos del trabajador en la base de
                 // datos
