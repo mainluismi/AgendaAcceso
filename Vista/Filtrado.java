@@ -476,7 +476,7 @@ public class Filtrado extends javax.swing.JFrame {
 
                 pack();
         }
-
+        //se crea el boton de filtrado de datos
         private void btnFiltrarAceptarActionPerformed(java.awt.event.ActionEvent evt) {
                 String dni;
                 String nombre;
@@ -570,7 +570,7 @@ public class Filtrado extends javax.swing.JFrame {
                 pantalla.actualizarTablaYSueldoMedio();
                 dispose();
         }
-
+        //boton cancelar y volver a los datos de los trabajadores
         private void btnFiltrarCancelarActionPerformed(java.awt.event.ActionEvent evt) {
                 Datos pantalla = new Datos();
                 pantalla.setVisible(true);
@@ -579,7 +579,7 @@ public class Filtrado extends javax.swing.JFrame {
 
                 dispose();
         }
-
+        //boton para ver los datos 
         private void btnFiltrarVerTodos1ActionPerformed(java.awt.event.ActionEvent evt) {
 
                 Datos pantalla = new Datos();
@@ -589,7 +589,7 @@ public class Filtrado extends javax.swing.JFrame {
 
                 dispose();
         }
-
+        //boton filtrado de datos por mes
         private void txtFiltrarMesActionPerformed(java.awt.event.ActionEvent evt) {
                 // TODO add your handling code here:
         }
