@@ -134,6 +134,7 @@
             <Property name="text" type="java.lang.String" value="Indica la operacion a realizar "/>
           </Properties>
         </Component>
+        //boton para ir a la vista de datos trabajadores 
         <Component class="javax.swing.JButton" name="btnMostrarAgenda">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -151,6 +152,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMostrarAgendaActionPerformed"/>
           </Events>
         </Component>
+          // botos para salir del programa
         <Component class="javax.swing.JButton" name="btnSalir">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
