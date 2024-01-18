@@ -250,7 +250,7 @@ public class DAOTrabajador {
         ResultSet resultSet = null;
 
         try {
-            connection = BDConnection.getConexion(); // Reemplaza esto según tu lógica de conexión
+            connection = BDConnection.getConexion();
 
             statement = connection.prepareStatement(consulta);
             resultSet = statement.executeQuery();

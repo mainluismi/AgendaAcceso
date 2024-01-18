@@ -319,9 +319,12 @@ public class Datos extends javax.swing.JFrame {
 			Modificar modificarVentana = new Modificar();
 			modificarVentana.cargarDatosTrabajador(dni);
 			modificarVentana.setVisible(true);
+			modificarVentana.setLocationRelativeTo(null);
 			dispose();
 		} else {
 			System.out.println("No se han podido cargar los datos del trabajador");
+			JOptionPane.showMessageDialog(this, "Seleccione una fila para modificar", "Advertencia",
+					JOptionPane.WARNING_MESSAGE);
 		}
 	}
 
