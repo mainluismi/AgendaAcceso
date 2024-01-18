@@ -18,9 +18,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class DAOTrabajador {
 
-    private String url; // URL for connecting to the database
-    private String user; // Database username
-    private String password; // Database password
+    private String url;
+    private String user;
+    private String password;
 
     private Connection conexion;
 
